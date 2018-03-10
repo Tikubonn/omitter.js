@@ -28,4 +28,4 @@ it show all sentences.
 3. I want search a css property that can same as this plugin, after developed this :D
 
 ### License 
-this plugin released under GPL3.0
+this plugin released under MIT license.

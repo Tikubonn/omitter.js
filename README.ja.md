@@ -27,4 +27,4 @@ window.addEventListener("load", function (event){
 3. 開発が終わったら、完全に同じことがcssでできるかどうかを調べてみます。
 
 ### License 
-this plugin released under GPL3.0
+this plugin released under MIT license.
