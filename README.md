@@ -18,7 +18,7 @@ it show all sentences.
 | Method | Description |
 ---- | ---- 
 | Omitter.omit | enable omission mode and update nodes. | 
-| Omitter.unomit | disable omission mode and update nodes if need it. | 
+| Omitter.unomit | disable omission mode and update nodes if necessary. | 
 | Omitter.update | update nodes if omission mode is enabled. | 
 | Omitter.toggle | toggle omission mode and update nodes. |
 
