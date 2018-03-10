@@ -13,6 +13,14 @@ window.addEventListener("load", function (event){
 
 もし省略表示をやめさせたい場合には`omitter.unomit();`メソッドを呼び出せば、全表示に戻ります。
 
+## Methods 
+| メソッド | 説明文 |
+---- | ---- 
+| Omitter.omit | 省略表示を有効にし、要素を更新します。 | 
+| Omitter.unomit | 省略表示を無効にし、必要であれば要素を更新します。 | 
+| Omitter.update | 省略表示が有効であれば要素を更新します。 | 
+| Omitter.toggle | 省略表示を切り替えます。 |
+
 ### TODO
 1. バグの修正が終わったら、[jQuery](https://jquery.com/)等の人気のあるライブラリを引数に使えるようにしたいですん。
 2. バグの修正が終わったら、省略後の三点リーダーのような文字列を、任意で省略後の文字列に追加できるようにしたいです。

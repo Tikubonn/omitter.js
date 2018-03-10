@@ -14,6 +14,14 @@ window.addEventListener("load", function (event){
 if you want disable omission, you can use `omitter.unomit();` method.
 it show all sentences.
 
+## Methods 
+| Method | Description |
+---- | ---- 
+| Omitter.omit | enable omission mode and update nodes. | 
+| Omitter.unomit | disable omission mode and update nodes if need it. | 
+| Omitter.update | update nodes if omission mode is enabled. | 
+| Omitter.toggle | toggle omission mode and update nodes. |
+
 ### TODO
 1. this plugin want support [jQuery](https://jquery.com/) and some popular libraries as input arguments, after bug fixed.
 2. support a customizable token that show on the last of omitted sentence. it like as "...".
