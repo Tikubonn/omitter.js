@@ -74,6 +74,12 @@ OmitterDom.prototype.unomit = function (){
 
 function Omitter (doms, count){
 	this.status = false;
+	
+	if (window.jQuery &&
+			doms instanceof window.jQuery){
+		doms = doms.toArray();
+	}
+	
 	this.doms = Array.prototype.slice.call(doms).map(
 		function (dom){
 			return new OmitterDom(dom, count);
