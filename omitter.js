@@ -73,6 +73,7 @@ OmitterDom.prototype.unomit = function (){
 };
 
 function Omitter (doms, count){
+	this.status = false;
 	this.doms = Array.prototype.slice.call(doms).map(
 		function (dom){
 			return new OmitterDom(dom, count);
@@ -80,6 +81,7 @@ function Omitter (doms, count){
 }
 
 Omitter.prototype.omit = function (){
+	this.status = true;
 	this.doms.map(
 		function (dom){
 			dom.do1();
@@ -91,8 +93,22 @@ Omitter.prototype.omit = function (){
 };
 
 Omitter.prototype.unomit = function (){
-	this.doms.map(
-		function (dom){
-			dom.unomit();
-		});
+	this.status && 
+		this.doms.map(
+			function (dom){
+				dom.unomit();
+			});
+	this.status = false;
+};
+
+Omitter.prototype.toggle = function (){
+	this.status ? 
+		this.unomit():
+		this.omit();
+};
+
+Omitter.prototype.update = function (){
+	this.status ? 
+		this.omit():
+		this.unomit();
 };
