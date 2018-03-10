@@ -23,12 +23,9 @@ it show all sentences.
 | Omitter.toggle | toggle omission mode and update nodes. |
 
 ### TODO
-1. this plugin want support [jQuery](https://jquery.com/) and some popular libraries as input arguments, after bug fixed.
+1. this plugin will support [jQuery](https://jquery.com/) and some popular libraries as input arguments.
 2. support a customizable token that show on the last of omitted sentence. it like as "...".
 3. I want search a css property that can same as this plugin, after developed this :D
-
-### Known Bug
-if a container was resized to too larger, text content is gone. now Im investigating about it.
 
 ### License 
 this plugin released under GPL3.0
