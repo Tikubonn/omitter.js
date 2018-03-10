@@ -3,8 +3,9 @@ Omitter.jsはJavaScriptで書かれた、テキストを省略表示するプラ
 極力Reflowの頻度を減らしているので、TextNode.dataや[Element.innerText](https://developer.mozilla.org/ja/docs/Web/API/Node/innerText)を書き換える方法よりも早く動作すると思います。
 
 ## For Example 
-```
+```js
 window.addEventListener("load", function (event){
+  // var doms = $(".omitter-target");
   var doms = document.querySelectorAll(".omitter-target");
   var omitter = new Omitter(doms, 3); // limit to 3 lines.
   omitter.omit();
@@ -22,7 +23,6 @@ window.addEventListener("load", function (event){
 | Omitter.toggle | 省略表示を切り替えます。 |
 
 ### TODO
-1. [jQuery](https://jquery.com/)等の人気のあるライブラリを引数に使えるようにしたいです。
 2. 省略後の三点リーダーのような文字列を、任意で省略後の文字列に追加できるようにしたいです。
 3. 開発が終わったら、完全に同じことがcssでできるかどうかを調べてみます。
 
