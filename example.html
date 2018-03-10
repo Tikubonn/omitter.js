@@ -176,11 +176,13 @@
 		</div>
 		<a href="javascript:void(0)" class="do-omit">Ommit</a>
 		<a href="javascript:void(0)" class="do-unomit">UnOmmit</a>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="omitter.js"></script>
 		<script>
 		
 			window.addEventListener("load", function (event){
 				var doms = document.querySelectorAll(".example");
+				// var doms = $(".example");
 				var omitter = new Omitter(doms, 2);
 				window.addEventListener("resize", function (event){
 					requestAnimationFrame(omitter.update.bind(omitter));
