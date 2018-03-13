@@ -7,7 +7,7 @@ this plugin thought about reduce reflow count. so probably this plugin is faster
 window.addEventListener("load", function (event){
   // var doms = $(".omitter-target");
   var doms = document.querySelectorAll(".omitter-target");
-  var omitter = new Omitter(doms, 3); // limit to 3 lines.
+  var omitter = new Omitter(doms, 3, "..."); // limit to 3 lines.
   omitter.omit();
 });
 ```

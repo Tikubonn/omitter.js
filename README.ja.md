@@ -7,7 +7,7 @@ Omitter.jsはJavaScriptで書かれた、テキストを省略表示するプラ
 window.addEventListener("load", function (event){
   // var doms = $(".omitter-target");
   var doms = document.querySelectorAll(".omitter-target");
-  var omitter = new Omitter(doms, 3); // limit to 3 lines.
+  var omitter = new Omitter(doms, 3, "..."); // limit to 3 lines.
   omitter.omit();
 });
 ```
