@@ -1,5 +1,5 @@
 
-.omitter-sentence {
+.omitter {
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -7,5 +7,28 @@
 	position: relative;
 }
 
-.omitter-sentence span {
+.omitter-charactors {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+.omitter-charactor {
+}
+
+.omitter-cramp {
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: auto;
+	display: block;
+	position: absolute;
+	user-select: none;
+	pointer-events: none;
+}
+
+.omitter-hidden {
+	visibility: hidden;
 }
