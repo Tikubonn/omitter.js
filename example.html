@@ -183,22 +183,22 @@
 			window.addEventListener("load", function (event){
 				var doms = document.querySelectorAll(".example");
 				// var doms = $(".example");
-				var omitter = new Omitter(doms, 2);
+				var omitter = new Omitter(doms, 2, "...");
 				window.addEventListener("resize", function (event){
-					requestAnimationFrame(omitter.update.bind(omitter));
-					// omitter.update();
+					// requestAnimationFrame(omitter.update.bind(omitter));
+					omitter.update();
 				});
-				requestAnimationFrame(omitter.omit.bind(omitter));
-				// omitter.omit();
+				// requestAnimationFrame(omitter.omit.bind(omitter));
+				omitter.omit();
 				var omit = document.querySelector(".do-omit");
 				var unomit = document.querySelector(".do-unomit");
 				omit.addEventListener("click", function (event){
-					requestAnimationFrame(omitter.omit.bind(omitter));
-					// omitter.omit();
+					// requestAnimationFrame(omitter.omit.bind(omitter));
+					omitter.omit();
 				});
 				unomit.addEventListener("click", function (event){
-					requestAnimationFrame(omitter.unomit.bind(omitter));
-					// omitter.unomit();
+					// requestAnimationFrame(omitter.unomit.bind(omitter));
+					omitter.unomit();
 				});
 			});
 		
