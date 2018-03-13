@@ -9,6 +9,14 @@ function OmitterDom (dom, count, cramp){
 	this.domContent = dom.innerText;
 	this.cramp = null;
 	this.crampContent = cramp;
+	this.crampWidth = null;
+	this.charactors = null;
+	this.charactorsWidth = null;
+	this.charactorsWidths = null;
+	this.charactorsHeights = null;
+	this.charactorsTops = null;
+	this.charactorsLefts = null;
+	this.root = null;
 	this.maxTop = null;
 	this.maxHeight = null;
 	this.count = count;
@@ -37,7 +45,6 @@ OmitterDom.prototype.init2 = function (){
 	while (i < is){
 		var charactor = document.createElement("span");
 		var charactorContent = document.createTextNode(this.domContent[i]);
-		// var charactorContent = document.createTextNode(this.domContent.slice(i, i+1));
 		charactor.appendChild(charactorContent);
 		charactor.classList.add("omitter-charactor");
 		charactorsFragment.appendChild(charactor);
@@ -74,12 +81,36 @@ OmitterDom.prototype.omit1 = function (){
 };
 
 OmitterDom.prototype.omit2 = function (){
-
-	var poses = new Array();
+	
+	var crampWidth = this.cramp.offsetWidth;
+	var charactorsWidth = this.charactors.offsetWidth;
+	var charactorsHeights = new Array();
+	var charactorsLefts = new Array();
+	var charactorsTops = new Array();
+	
 	var i = 0;
 	var is = this.charactors.childNodes.length;
 	while (i < is){
-		var pos = this.charactors.childNodes[i].offsetTop;
+		charactorsHeights.push(this.charactors.childNodes[i].offsetHeight);
+		charactorsLefts.push(this.charactors.childNodes[i].offsetLeft);
+		charactorsTops.push(this.charactors.childNodes[i].offsetTop);
+		i = (i+1)|0;
+	}
+
+	this.crampWidth = crampWidth;
+	this.charactorsWidth = charactorsWidth;
+	this.charactorsHeights = charactorsHeights;
+	this.charactorsLefts = charactorsLefts;
+	this.charactorsTops = charactorsTops;
+};
+
+OmitterDom.prototype.omit3 = function (){
+
+	var poses = new Array();
+	var i = 0;
+	var is = this.charactorsTops.length;
+	while (i < is){
+		var pos = this.charactorsTops[i];
 		if (poses.indexOf(pos) == -1)
 			poses.push(pos);
 		i = (i+1)|0;
@@ -89,32 +120,33 @@ OmitterDom.prototype.omit2 = function (){
 		poses[Math.min(poses.length -1, this.count)];
 };
 
-OmitterDom.prototype.omit3 = function (){
+OmitterDom.prototype.omit4 = function (){
 
 	this.maxHeight = 0;
 	
-	var i = this.charactors.childNodes.length -1;
+	var i = this.charactorsTops.length -1;
 	while (-1 < i){
-		if (this.charactors.childNodes[i].offsetTop == this.maxTop)
-			this.maxHeight = Math.max(this.maxHeight, this.charactors.childNodes[i].offsetHeight);
+		if (this.charactorsTops[i] == this.maxTop)
+			this.maxHeight = Math.max(this.maxHeight, this.charactorsHeights[i]);
 		i = (i-1)|0;
 	}
 };
 ;
-OmitterDom.prototype.omit4 = function (){
+OmitterDom.prototype.omit5 = function (){
 
 	var done = false;
 	var i = this.charactors.childNodes.length -1;
 	while (-1 < i){
-		if (this.maxTop < this.charactors.childNodes[i].offsetTop)
+		if (this.maxTop < this.charactorsTops[i]){
 			this.charactors.childNodes[i].classList.add("omitter-hidden");
-		else if (this.maxTop == this.charactors.childNodes[i].offsetTop){
-			if (this.cramp.offsetWidth < this.charactors.offsetWidth - this.charactors.childNodes[i].offsetLeft){
+		}
+		else if (this.maxTop == this.charactorsTops[i]){
+			if (this.crampWidth < this.charactorsWidth - this.charactorsLefts[i]){
 				if (!done){
 					done = true;
-					this.cramp.style.top = this.charactors.childNodes[i].offsetTop + "px";
-					this.cramp.style.left = this.charactors.childNodes[i].offsetLeft + "px";
-					this.charactors.childNodes[i].classList.add("omitter-hidden");					
+					this.cramp.style.top = this.charactorsTops[i] + "px";
+					this.cramp.style.left = this.charactorsLefts[i] + "px";
+					this.charactors.childNodes[i].classList.add("omitter-hidden");
 				}
 				else {
 					this.charactors.childNodes[i].classList.remove("omitter-hidden");
@@ -139,6 +171,7 @@ OmitterDom.prototype.omit = function (){
 	this.omit2();
 	this.omit3();
 	this.omit4();
+	this.omit5();
 };
 
 OmitterDom.prototype.unomit1 = function (){
@@ -184,6 +217,7 @@ Omitter.prototype.omit = function (){
 	this.doms.map(function (dom){ dom.omit2(); });
 	this.doms.map(function (dom){ dom.omit3(); });
 	this.doms.map(function (dom){ dom.omit4(); });
+	this.doms.map(function (dom){ dom.omit5(); });
 };
 
 Omitter.prototype.unomit = function (){
