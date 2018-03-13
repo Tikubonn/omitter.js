@@ -68,12 +68,12 @@ OmitterDom.prototype.init = function (){
 	this.init2();
 };
 
-OmitterDom.prototype.do1 = function (){
+OmitterDom.prototype.omit1 = function (){
 	if (this.cramp.classList.contains("omitter-hidden"))
 		this.cramp.classList.remove("omitter-hidden");
 };
 
-OmitterDom.prototype.do2 = function (){
+OmitterDom.prototype.omit2 = function (){
 
 	var poses = new Array();
 	var i = 0;
@@ -89,7 +89,7 @@ OmitterDom.prototype.do2 = function (){
 		poses[Math.min(poses.length -1, this.count)];
 };
 
-OmitterDom.prototype.do3 = function (){
+OmitterDom.prototype.omit3 = function (){
 
 	this.maxHeight = 0;
 	
@@ -101,7 +101,7 @@ OmitterDom.prototype.do3 = function (){
 	}
 };
 ;
-OmitterDom.prototype.do4 = function (){
+OmitterDom.prototype.omit4 = function (){
 
 	var done = false;
 	var i = this.charactors.childNodes.length -1;
@@ -135,10 +135,10 @@ OmitterDom.prototype.do4 = function (){
 };
 
 OmitterDom.prototype.omit = function (){
-	this.do1();
-	this.do2();
-	this.do3();
-	this.do4();
+	this.omit1();
+	this.omit2();
+	this.omit3();
+	this.omit4();
 };
 
 OmitterDom.prototype.unomit1 = function (){
@@ -180,10 +180,10 @@ function Omitter (doms, count, token){
 
 Omitter.prototype.omit = function (){
 	this.status = true;
-	this.doms.map(function (dom){ dom.do1(); });
-	this.doms.map(function (dom){ dom.do2(); });
-	this.doms.map(function (dom){ dom.do3(); });
-	this.doms.map(function (dom){ dom.do4(); });
+	this.doms.map(function (dom){ dom.omit1(); });
+	this.doms.map(function (dom){ dom.omit2(); });
+	this.doms.map(function (dom){ dom.omit3(); });
+	this.doms.map(function (dom){ dom.omit4(); });
 };
 
 Omitter.prototype.unomit = function (){
