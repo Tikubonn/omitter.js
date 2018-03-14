@@ -76,8 +76,8 @@ OmitterDom.prototype.init = function (){
 };
 
 OmitterDom.prototype.omit1 = function (){
-	if (this.cramp.classList.contains("omitter-hidden"))
-		this.cramp.classList.remove("omitter-hidden");
+	// if (this.cramp.classList.contains("omitter-hidden"))
+	// 	this.cramp.classList.remove("omitter-hidden");
 };
 
 OmitterDom.prototype.omit2 = function (){
@@ -117,7 +117,12 @@ OmitterDom.prototype.omit3 = function (){
 	}
 	
 	this.maxTop = poses.length == 0 ? 0 :
-		poses[Math.min(poses.length -1, this.count)];
+		poses[Math.min(poses.length -1, this.count -1)];
+	
+	this.hideable = this.count < poses.length;
+	if (this.hideable)
+		this.cramp.classList.remove("omitter-hidden");
+	else this.cramp.classList.add("omitter-hidden");
 };
 
 OmitterDom.prototype.omit4 = function (){
@@ -142,7 +147,7 @@ OmitterDom.prototype.omit5 = function (){
 		}
 		else if (this.maxTop == this.charactorsTops[i]){
 			if (this.crampWidth < this.charactorsWidth - this.charactorsLefts[i]){
-				if (!done){
+				if (!done && this.hideable){
 					done = true;
 					this.cramp.style.top = this.charactorsTops[i] + "px";
 					this.cramp.style.left = this.charactorsLefts[i] + "px";
@@ -175,8 +180,7 @@ OmitterDom.prototype.omit = function (){
 };
 
 OmitterDom.prototype.unomit1 = function (){
-	if (this.cramp.classList.contains("omitter-hidden") == false)
-		this.cramp.classList.add("omitter-hidden");
+	this.cramp.classList.add("omitter-hidden");
 };
 
 OmitterDom.prototype.unomit2 = function (){
