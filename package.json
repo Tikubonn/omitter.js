@@ -1,0 +1,25 @@
+{
+  "name": "omitter",
+  "version": "0.9.1",
+  "description": "omitter.js is small javascript plugin, it can omit a text content as better.",
+  "main": "omitter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tikubonn/omitter.js.git"
+  },
+  "keywords": [
+    "javascript",
+    "browser",
+    "plugin",
+    "DOM"
+  ],
+  "author": "tikubonn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tikubonn/omitter.js/issues"
+  },
+  "homepage": "https://github.com/Tikubonn/omitter.js#readme"
+}
