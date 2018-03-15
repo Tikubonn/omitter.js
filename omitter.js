@@ -23,6 +23,34 @@ function OmitterDom (dom, count, cramp){
 	this.init();
 }
 
+OmitterDom.prototype.addTextNode = function (dom){
+	var text = dom.data;
+	var i = 0;
+	var is = text.length;
+	while (i < is){
+		var span = document.createElement("span");
+		var spanContent = document.createTextNode(text[i]);
+		span.appendChild(spanContent);
+		dom.appendChild(span);
+		this.charactorsNodes.push(span);
+		i = (i+1)|0;
+	}
+};
+
+OmitterDom.prototype.addDom = function (dom){
+	var i = 0;
+	var is = dom.childNodes.length;
+	while (i < is){
+		if (dom.childNodes[i] instanceof Text){
+			// text
+		}
+		else {
+			// html element node
+		}
+		i = (i+1)|0;
+	}
+};
+
 OmitterDom.prototype.init1 = function (){
 	var i = this.dom.childNodes.length -1;
 	while (-1 < i){
@@ -76,11 +104,6 @@ OmitterDom.prototype.init = function (){
 };
 
 OmitterDom.prototype.omit1 = function (){
-	// if (this.cramp.classList.contains("omitter-hidden"))
-	// 	this.cramp.classList.remove("omitter-hidden");
-};
-
-OmitterDom.prototype.omit2 = function (){
 	
 	var crampWidth = this.cramp.offsetWidth;
 	var charactorsWidth = this.charactors.offsetWidth;
@@ -104,7 +127,7 @@ OmitterDom.prototype.omit2 = function (){
 	this.charactorsTops = charactorsTops;
 };
 
-OmitterDom.prototype.omit3 = function (){
+OmitterDom.prototype.omit2 = function (){
 
 	var poses = new Array();
 	var i = 0;
@@ -125,7 +148,7 @@ OmitterDom.prototype.omit3 = function (){
 	else this.cramp.classList.add("omitter-hidden");
 };
 
-OmitterDom.prototype.omit4 = function (){
+OmitterDom.prototype.omit3 = function (){
 
 	this.maxHeight = 0;
 	
@@ -137,7 +160,7 @@ OmitterDom.prototype.omit4 = function (){
 	}
 };
 ;
-OmitterDom.prototype.omit5 = function (){
+OmitterDom.prototype.omit4 = function (){
 
 	var done = false;
 	var i = this.charactors.childNodes.length -1;
@@ -176,7 +199,6 @@ OmitterDom.prototype.omit = function (){
 	this.omit2();
 	this.omit3();
 	this.omit4();
-	this.omit5();
 };
 
 OmitterDom.prototype.unomit1 = function (){
@@ -221,7 +243,6 @@ Omitter.prototype.omit = function (){
 	this.doms.map(function (dom){ dom.omit2(); });
 	this.doms.map(function (dom){ dom.omit3(); });
 	this.doms.map(function (dom){ dom.omit4(); });
-	this.doms.map(function (dom){ dom.omit5(); });
 };
 
 Omitter.prototype.unomit = function (){
