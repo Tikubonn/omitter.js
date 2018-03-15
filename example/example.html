@@ -53,8 +53,11 @@
 	</head>
 	<body>
 		<div class="examples">
-			<div class="example">
+			<!-- <div class="example">
 				Bacon ipsum dolor amet occaecat jowl laborum pastrami et nulla. Qui swine nisi cupim. Eiusmod ut eu short ribs.
+			</div> -->
+			<div class="example">
+				Bacon ipsum dolor amet occaecat jowl laborum pastrami et nulla.
 			</div>
 			<div class="example">
 				Bacon ipsum dolor amet occaecat jowl laborum pastrami et nulla. Qui swine nisi cupim. Eiusmod ut eu short ribs.
@@ -183,7 +186,7 @@
 			window.addEventListener("load", function (event){
 				var doms = document.querySelectorAll(".example");
 				// var doms = $(".example");
-				var omitter = new Omitter(doms, 2, "...");
+				var omitter = new Omitter(doms, 3, "...");
 				window.addEventListener("resize", function (event){
 					// requestAnimationFrame(omitter.update.bind(omitter));
 					omitter.update();
