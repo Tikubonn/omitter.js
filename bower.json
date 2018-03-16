@@ -1,0 +1,16 @@
+{
+  "name": "omitter",
+  "description": "omitter.js is small javascript plugin, it can omit a text content faster.",
+  "main": "omitter.js",
+  "authors": [
+    "tikubonn"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "browser",
+    "plugin",
+    "DOM"
+  ],
+  "homepage": "https://github.com/Tikubonn/omitter.js"
+}
