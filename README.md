@@ -1,5 +1,5 @@
 # omitter.js
-Omitter.js is a small javascript plugin, it can omit a text content as faster.
+Omitter.js is a small javascript plugin, it can omit a text content faster.
 this plugin thought about reduce reflow count. so probably this plugin is faster than some plugins that using [Element.innerText](https://developer.mozilla.org/en/docs/Web/API/Node/innerText) or TextNode.data.
 
 ## For Example 
