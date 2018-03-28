@@ -4,52 +4,23 @@
 	http://opensource.org/licenses/mitlicense.php 
 */
 
-function OmitterDom (dom, count, cramp){
+function OmitterDom (dom, count, ellipsis){
 	this.dom = dom;
 	this.domContent = dom.innerText;
-	this.cramp = null;
-	this.crampContent = cramp;
-	this.crampWidth = null;
+	this.ellipsis = null;
+	this.ellipsisContent = ellipsis;
+	this.ellipsisWidth = null;
 	this.charactors = null;
 	this.charactorsWidth = null;
-	this.charactorsWidths = null;
-	this.charactorsHeights = null;
-	this.charactorsTops = null;
-	this.charactorsLefts = null;
+	this.charactorHeights = null;
+	this.charactorLefts = null;
+	this.charactorTops = null;
 	this.root = null;
 	this.maxTop = null;
 	this.maxHeight = null;
 	this.count = count;
 	this.init();
 }
-
-OmitterDom.prototype.addTextNode = function (dom){
-	var text = dom.data;
-	var i = 0;
-	var is = text.length;
-	while (i < is){
-		var span = document.createElement("span");
-		var spanContent = document.createTextNode(text[i]);
-		span.appendChild(spanContent);
-		dom.appendChild(span);
-		this.charactorsNodes.push(span);
-		i = (i+1)|0;
-	}
-};
-
-OmitterDom.prototype.addDom = function (dom){
-	var i = 0;
-	var is = dom.childNodes.length;
-	while (i < is){
-		if (dom.childNodes[i] instanceof Text){
-			// text
-		}
-		else {
-			// html element node
-		}
-		i = (i+1)|0;
-	}
-};
 
 OmitterDom.prototype.init1 = function (){
 	var i = this.dom.childNodes.length -1;
@@ -66,6 +37,7 @@ OmitterDom.prototype.init2 = function (){
 	root.classList.add("omitter");
 	
 	var charactors = document.createElement("div");
+	charactors.classList.add("omitter-charactors");
 	var charactorsFragment = document.createDocumentFragment();
 	
 	var i = 0;
@@ -79,14 +51,14 @@ OmitterDom.prototype.init2 = function (){
 		i = (i+1)|0;
 	}
 	
-	if (this.crampContent && 
-			this.crampContent.length){
-		var cramp = document.createElement("span");
-		var crampContent = document.createTextNode(this.crampContent);
-		cramp.appendChild(crampContent);
-		cramp.classList.add("omitter-cramp");
-		root.appendChild(cramp);
-		this.cramp = cramp;
+	if (this.ellipsisContent && 
+			this.ellipsisContent.length){
+		var ellipsis = document.createElement("span");
+		var ellipsisContent = document.createTextNode(this.ellipsisContent);
+		ellipsis.appendChild(ellipsisContent);
+		ellipsis.classList.add("omitter-ellipsis");
+		root.appendChild(ellipsis);
+		this.ellipsis = ellipsis;
 	}
 
 	charactors.appendChild(charactorsFragment);
@@ -105,35 +77,35 @@ OmitterDom.prototype.init = function (){
 
 OmitterDom.prototype.omit1 = function (){
 	
-	var crampWidth = this.cramp.offsetWidth;
+	var ellipsisWidth = this.ellipsis.offsetWidth;
 	var charactorsWidth = this.charactors.offsetWidth;
-	var charactorsHeights = new Array();
-	var charactorsLefts = new Array();
-	var charactorsTops = new Array();
+	var charactorHeights = new Array();
+	var charactorLefts = new Array();
+	var charactorTops = new Array();
 	
 	var i = 0;
 	var is = this.charactors.childNodes.length;
 	while (i < is){
-		charactorsHeights.push(this.charactors.childNodes[i].offsetHeight);
-		charactorsLefts.push(this.charactors.childNodes[i].offsetLeft);
-		charactorsTops.push(this.charactors.childNodes[i].offsetTop);
+		charactorHeights.push(this.charactors.childNodes[i].offsetHeight);
+		charactorLefts.push(this.charactors.childNodes[i].offsetLeft);
+		charactorTops.push(this.charactors.childNodes[i].offsetTop);
 		i = (i+1)|0;
 	}
 
-	this.crampWidth = crampWidth;
+	this.ellipsisWidth = ellipsisWidth;
 	this.charactorsWidth = charactorsWidth;
-	this.charactorsHeights = charactorsHeights;
-	this.charactorsLefts = charactorsLefts;
-	this.charactorsTops = charactorsTops;
+	this.charactorHeights = charactorHeights;
+	this.charactorLefts = charactorLefts;
+	this.charactorTops = charactorTops;
 };
 
 OmitterDom.prototype.omit2 = function (){
 
 	var poses = new Array();
 	var i = 0;
-	var is = this.charactorsTops.length;
+	var is = this.charactorTops.length;
 	while (i < is){
-		var pos = this.charactorsTops[i];
+		var pos = this.charactorTops[i];
 		if (poses.indexOf(pos) == -1)
 			poses.push(pos);
 		i = (i+1)|0;
@@ -144,18 +116,18 @@ OmitterDom.prototype.omit2 = function (){
 	
 	this.hideable = this.count < poses.length;
 	if (this.hideable)
-		this.cramp.classList.remove("omitter-hidden");
-	else this.cramp.classList.add("omitter-hidden");
+		this.ellipsis.classList.remove("omitter-hidden");
+	else this.ellipsis.classList.add("omitter-hidden");
 };
 
 OmitterDom.prototype.omit3 = function (){
 
 	this.maxHeight = 0;
 	
-	var i = this.charactorsTops.length -1;
+	var i = this.charactorTops.length -1;
 	while (-1 < i){
-		if (this.charactorsTops[i] == this.maxTop)
-			this.maxHeight = Math.max(this.maxHeight, this.charactorsHeights[i]);
+		if (this.charactorTops[i] == this.maxTop)
+			this.maxHeight = Math.max(this.maxHeight, this.charactorHeights[i]);
 		i = (i-1)|0;
 	}
 };
@@ -165,15 +137,15 @@ OmitterDom.prototype.omit4 = function (){
 	var done = false;
 	var i = this.charactors.childNodes.length -1;
 	while (-1 < i){
-		if (this.maxTop < this.charactorsTops[i]){
+		if (this.maxTop < this.charactorTops[i]){
 			this.charactors.childNodes[i].classList.add("omitter-hidden");
 		}
-		else if (this.maxTop == this.charactorsTops[i]){
-			if (this.crampWidth < this.charactorsWidth - this.charactorsLefts[i]){
+		else if (this.maxTop == this.charactorTops[i]){
+			if (this.ellipsisWidth < this.charactorsWidth - this.charactorLefts[i]){
 				if (!done && this.hideable){
 					done = true;
-					this.cramp.style.top = this.charactorsTops[i] + "px";
-					this.cramp.style.left = this.charactorsLefts[i] + "px";
+					this.ellipsis.style.top = this.charactorTops[i] + "px";
+					this.ellipsis.style.left = this.charactorLefts[i] + "px";
 					this.charactors.childNodes[i].classList.add("omitter-hidden");
 				}
 				else {
@@ -202,7 +174,7 @@ OmitterDom.prototype.omit = function (){
 };
 
 OmitterDom.prototype.unomit1 = function (){
-	this.cramp.classList.add("omitter-hidden");
+	this.ellipsis.classList.add("omitter-hidden");
 };
 
 OmitterDom.prototype.unomit2 = function (){
