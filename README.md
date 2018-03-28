@@ -24,8 +24,8 @@ it show all sentences.
 | Omitter.toggle | toggle omission mode and update nodes. |
 
 ### TODO
-2. support a customizable token that show on the last of omitted sentence. it like as "...".
-3. I want search a css property that can same as this plugin, after developed this :D
+1. I should think whitespace character. the ellipsis ignore whitespace or not?
+2. rename some members and css classes to right words.
 
 ### License 
 this plugin released under MIT license.

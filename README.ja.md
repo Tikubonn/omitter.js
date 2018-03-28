@@ -23,8 +23,8 @@ window.addEventListener("load", function (event){
 | Omitter.toggle | 省略表示を切り替えます。 |
 
 ### TODO
-2. 省略後の三点リーダーのような文字列を、任意で省略後の文字列に追加できるようにしたいです。
-3. 開発が終わったら、完全に同じことがcssでできるかどうかを調べてみます。
+1. 省略記号が空白文字を無視するか無視しないか考える。
+2. やっつけで書いたので、cssのクラス名や変数名などを意味の通る名前に書き直す事。
 
 ### License 
 this plugin released under MIT license.
