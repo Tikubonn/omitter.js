@@ -25,7 +25,7 @@ it show all sentences.
 
 ### TODO
 1. I should think whitespace character. the ellipsis ignore whitespace or not?
-2. rename some members and css classes to right words.
+2. append a option about optimization for performance. of an ".emitter-character" contain multiple characters, this plugin is able to reduce some calculations.
 
 ### License 
 this plugin released under MIT license.

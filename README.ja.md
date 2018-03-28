@@ -24,7 +24,7 @@ window.addEventListener("load", function (event){
 
 ### TODO
 1. 省略記号が空白文字を無視するか無視しないか考える。
-2. やっつけで書いたので、cssのクラス名や変数名などを意味の通る名前に書き直す事。
+2. インスタンス生成時にユーザが設定可能な最適化オプションを追加する。
 
 ### License 
 this plugin released under MIT license.
